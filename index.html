@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | ซีออนซ์</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #d7193f;
+    --dark-red: #8f1029;
+    --pink: #ffe5eb;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    min-height: 100vh;
+    color: #333;
+    background: linear-gradient(-45deg, #fff0f2, #ffffff, #ffdce4, #fff5f6);
+    background-size: 400% 400%;
+    animation: backgroundMove 12s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* วงกลมตกแต่ง */
+.circle {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(215, 25, 63, 0.08);
+    filter: blur(2px);
+    z-index: -1;
+    animation: float 7s ease-in-out infinite;
+}
+
+.circle.one {
+    width: 250px;
+    height: 250px;
+    top: 5%;
+    left: -80px;
+}
+
+.circle.two {
+    width: 180px;
+    height: 180px;
+    bottom: 5%;
+    right: -50px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-35px); }
+}
+
+/* กล่องหลัก */
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 65px auto;
+    padding: 45px 35px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(143,16,41,0.12);
+    text-align: center;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* รูปโปรไฟล์ */
+.profile-frame {
+    width: 210px;
+    height: 210px;
+    margin: 0 auto 25px;
+    padding: 7px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9aaa, #c5162e, #ffccd5);
+    box-shadow: 0 0 20px rgba(215,25,63,0.35);
+    animation: glow 3s ease-in-out infinite;
+}
+
+.profile-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    transition: transform 0.5s;
+}
+
+.profile-frame:hover img {
+    transform: scale(1.08) rotate(3deg);
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(215,25,63,0.3);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(215,25,63,0.65);
+    }
+}
+
+/* ชื่อ */
+.name {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--dark-red);
+    letter-spacing: 1px;
+    animation: slideDown 1s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.nickname {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 22px;
+    color: white;
+    background: linear-gradient(90deg, #c5162e, #ff718b);
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(197,22,46,0.2);
+}
+
+/* เส้นคั่น */
+.line {
+    width: 90px;
+    height: 4px;
+    margin: 25px auto;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff9aaa, #c5162e);
+}
+
+/* หัวข้อ */
+.section-title {
+    color: var(--dark-red);
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+/* การ์ดข้อมูล */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.info-card {
+    padding: 20px;
+    background: linear-gradient(135deg, #fff5f6, #ffe3e9);
+    border: 1px solid #ffd0da;
+    border-radius: 18px;
+    transition: all 0.35s ease;
+    animation: cardAppear 1s ease backwards;
+}
+
+.info-card:nth-child(2) { animation-delay: .1s; }
+.info-card:nth-child(3) { animation-delay: .2s; }
+.info-card:nth-child(4) { animation-delay: .3s; }
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    background: white;
+    box-shadow: 0 12px 25px rgba(197,22,46,0.15);
+    border-color: var(--red);
+}
+
+.info-card h3 {
+    color: var(--red);
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.info-card p {
+    font-size: 17px;
+    color: #444;
+}
+
+/* แนะนำตัว */
+.about {
+    margin-top: 30px;
+    padding: 22px;
+    background: white;
+    border-left: 5px solid var(--red);
+    border-radius: 12px;
+    text-align: left;
+    line-height: 1.9;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+/* ปุ่ม */
+.button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #a90f2d, #f04b69);
+    box-shadow: 0 7px 20px rgba(197,22,46,0.25);
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: translateY(-5px) scale(1.04);
+    box-shadow: 0 12px 25px rgba(197,22,46,0.35);
+}
+
+footer {
+    margin-top: 30px;
+    color: #a64b5e;
+    font-size: 13px;
+}
+
+/* รองรับโทรศัพท์ */
+@media (max-width: 600px) {
+    .container {
+        margin: 25px auto;
+        padding: 30px 18px;
+    }
+
+    .name {
+        font-size: 27px;
+    }
+
+    .profile-frame {
+        width: 170px;
+        height: 170px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="circle one"></div>
+<div class="circle two"></div>
+
+<div class="container">
+
+    <!-- รูปโปรไฟล์ -->
+    <div class="profile-frame">
+        <img src="S__26992645.jpg" alt="รูปโปรไฟล์ซีออนซ์">
+    </div>
+
+    <h1 class="name">อรอรงค์ บ้านหัวงิ้ว</h1>
+    <div class="nickname">ซีออนซ์</div>
+
+    <div class="line"></div>
+
+    <h2 class="section-title">MY PROFILE</h2>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>AGE</h3>
+            <p>17 ปี</p>
+        </div>
+
+        <div class="info-card">
+            <h3>SCHOOL</h3>
+            <p>วิทยาลัยเทคนิคสิงห์บุรี</p>
+        </div>
+
+        <div class="info-card">
+            <h3>DEPARTMENT</h3>
+            <p>เทคโนโลยีสารสนเทศ</p>
+        </div>
+
+        <div class="info-card">
+            <h3>CLASS</h3>
+            <p>ปวช. 2/2</p>
+        </div>
+
+    </div>
+
+    <div class="about">
+        <h3 style="color:#c5162e;">ABOUT ME</h3>
+        <p>
+            สวัสดี ยินดีต้อนรับเข้าสู่เว็บไซต์แนะนำตัวของฉัน
+            เว็บไซต์นี้จัดทำขึ้นเพื่อแนะนำข้อมูลส่วนตัว
+            และประวัติการศึกษา
+        </p>
+    </div>
+
+    <a href="#" class="button">WELCOME TO MY PROFILE</a>
+
+    <footer>
+        © 2026 MY PROFILE | DESIGNED BY ซีออนซ์
+    </footer>
+
+</div>
+
+</body>
+</html>
